@@ -1,25 +1,42 @@
 'use client'
 import React from 'react'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const page = () => {
 
   const [ title, setTitle ] = useState('')
   const [ description, setDescription ] = useState('') 
+  const router = useRouter()
 
   const handleSubmit = async(e) => {
     e.preventDefault()
-    const res = await fetch('http://localhost:3000/api/turtles', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }, body: JSON.stringify({ title, description })
-    })
+
+    if ( !title || !description ) {
+      alert('To create new Turtle please provider both title AND description')
+      return
+    }
+
+
+    try {
+      const res = await fetch('http://localhost:3000/api/turtles', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }, body: JSON.stringify({ title, description })
+      })
     
-    const response = await res.json()
-    setDescription('')
-    setTitle('')
-    return response
+      if (res.ok) { 
+        router.push('/')
+        router.refresh()
+        }
+        else {
+          throw new Error('Failed to create new Turtle..')
+      }
+    }
+    catch(err) {
+      console.log(err.message, err)
+    }
   }
 
   return (
