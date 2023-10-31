@@ -4,7 +4,9 @@ import TurdleList from './components/TurdleList'
 
 const homePage = () => {
   return (
-    <main><TurdleList /></main>
+    <main>
+      <TurdleList />
+      </main>
   )
 }
 

@@ -1,6 +1,9 @@
-
-
+import Topic from "@/models/topic"
+import connectMongoDB from "@/lib/mongodb"
+import { NextResponse } from "next/server"
 
 export async function GET() {
-    const res = await fetch('')
+    await connectMongoDB()
+    const topics = await Topic.find()
+    return NextResponse.json({topics})
 }
