@@ -5,6 +5,7 @@ import RemoveButton from './RemoveButton'
 
 
 const getTurtles = async() => {
+
   try {
     const res = await fetch('http://localhost:3000/api/turtles', {cache: 'no-store'})
 
@@ -15,14 +16,14 @@ const getTurtles = async() => {
     return topics
   } 
   catch(err) {
-    console.log(err)
+    console.log(err.message)
   }
 }
 
 const TurdleList = async () => {
   
   const {topics} = await getTurtles()
-  console.log('topics from TurtleList function:  ',topics)
+  //console.log('topics from TurtleList function:  ',topics)
 
   return (
     <>
