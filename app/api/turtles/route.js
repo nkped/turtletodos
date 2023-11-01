@@ -17,3 +17,13 @@ export async function POST(request) {
     
     return NextResponse.json({message: 'New turtle created'}, {status: 200})
 }
+
+
+export async function DELETE(request) {
+    const id = await request.nextUrl.searchParams.get('id')
+    console.log('id from api routes :', id)
+    connectMongoDB()
+    await Topic.findByIdAndDelete(id)
+
+    return NextResponse.json({message: `Turtle ${id} was deleted`}, {status: 200})
+}

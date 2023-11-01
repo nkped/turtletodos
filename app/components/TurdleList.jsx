@@ -33,8 +33,8 @@ const TurdleList = async () => {
                 <div>{t.description}</div>            
             </div>
             <div className='flex gap-2'>
-              <RemoveButton />
-              <Link href={'/editTurtle/1'}><HiPencilAlt size={24}/></Link>
+              <RemoveButton id={t._id}/>
+              <Link href={`/editTurtle/${t._id}`}><HiPencilAlt size={24}/></Link>
             </div>
         </div>
         )
