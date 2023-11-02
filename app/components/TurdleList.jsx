@@ -10,10 +10,10 @@ const getTurtles = async() => {
     const res = await fetch('http://localhost:3000/api/turtles', {cache: 'no-store'})
 
     if (!res.ok) {
-      throw new Error('Fetch of topics failed..')
+      throw new Error('Fetch of topics failed from TurtleList..')
     }    
-    const topics = await res.json()
-    return topics
+    
+    return res.json()
   } 
   catch(err) {
     console.log(err.message)
